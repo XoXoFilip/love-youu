@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Message</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #fff0f5;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: float 4s infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { left: 10px; top: 0; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-500px) rotate(-45deg); opacity: 0; }
+        }
+
+        /* Password screen */
+        #passwordScreen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 10px;
+            border: none;
+            background-color: #ff6b81;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Slide animation */
+        .slideIn {
+            animation: slideIn 1s forwards;
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="passwordScreen">
+            <h1>Enter the Secret Code 🐱</h1>
+            <input type="password" id="passwordInput" placeholder="Your code here">
+            <button onclick="checkPassword()">Yes</button>
+        </div>
+
+        <div id="loveMessage" style="display:none;">
+            <h1>Happy Vietnamese Women’s Day ❤️</h1>
+            <p>
+                I just wanna say I love you so much. You are honestly one of the most important person in my life, and I am really lucky to have you. You make everything better — even on my bad days, just hearing from you makes me feel okay again.<br><br>
+                I know being apart is not easy, but I swear you are always on my mind. I miss you all the time — your laugh, your voice, even the small things like when you get mad over something silly. Id give anything just to be next to you right now.<br><br>
+                You deserve to feel special today. You work hard, you care so much, and youve got such a good heart. You are strong, beautiful, and honestly one of a kind. I am proud of you every day.<br><br>
+                If I could, I’d bring you flowers and just spend the whole day with you doing nothing but making you smile. But since I cannot, I just need you to know that I love you — for real, more than I can explain.<br><br>
+                You’re my person. Always will be ❤️
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            if(input.toLowerCase() === "hiro") {
+                document.getElementById('passwordScreen').style.display = 'none';
+                const message = document.getElementById('loveMessage');
+                message.style.display = 'block';
+                message.classList.add('slideIn');
+            } else {
+                alert("Incorrect code! Try again.");
+            }
+        }
+
+        // Floating hearts
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = 2 + Math.random() * 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 300);
+    </script>
+</body>
+</html>
